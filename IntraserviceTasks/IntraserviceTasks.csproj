@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0AAA5CD0-51C8-428C-AB31-2AA566FD15D7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IntraserviceTasks</RootNamespace>
+    <AssemblyName>IntraserviceTasks</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="microsoft.crm.sdk.proxy">
+      <HintPath>..\..\..\TFS_Altus\Crm2011.Altus\Vladimir.Kuraev\Integration1C\Integration\Integration\Assemblies\microsoft.crm.sdk.proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="microsoft.xrm.sdk">
+      <HintPath>..\..\..\TFS_Altus\Crm2011.Altus\Vladimir.Kuraev\Integration1C\Integration\Integration\Assemblies\microsoft.xrm.sdk.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.2.2\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BL\ContractSynchronizator.cs" />
+    <Compile Include="BL\OverdueNotif\NotificationGeneration\ContractCachedSearch.cs" />
+    <Compile Include="BL\OverdueNotif\NotificationGeneration\NotificationExtractorFromLifeTime.cs" />
+    <Compile Include="BL\OverdueNotif\NotificationGeneration\Notifications.cs" />
+    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configuration\Crm_GetContracts_Type.cs" />
+    <Compile Include="Configuration\IS_GetLifetimes_Type.cs" />
+    <Compile Include="CrmAPI\Cheating\AllContractsRemover.cs" />
+    <Compile Include="CrmAPI\Cheating\AllLifetimesRemover.cs" />
+    <Compile Include="CrmAPI\Cheating\ContragentCreator.cs" />
+    <Compile Include="CrmAPI\Constants\TeamAttributes.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\ContractContragent.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\ContractCurrency.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\ContractDate.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\ContractIntraserviceId.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\ContractMustBeChecked.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\ContractMustBeCheckedReason.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\ContractName.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\ContractNumber.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\ContractOpportunityNumber.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\ContractTotalAmount.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\ContractType.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\ContractZkNumber.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContractAttrs\MustBeCheckedReasonsParser.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContragentAttrs\ContragentInn.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ContragentAttrs\ContragentName.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\ConvertableAttribute.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\LifetimeAttrs\LifetimeApprovalDate.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\LifetimeAttrs\LifetimeApprovalDeadline.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\LifetimeAttrs\LifetimeApprovalPerson.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\LifetimeAttrs\LifetimeApprovalStatus.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\AppEntityConvertableAttribute.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\LifetimeAttrs\LifetimeBusinessUnit.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\LifetimeAttrs\LifetimeContract.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\LifetimeAttrs\LifetimeIntraserviceId.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\LifetimeAttrs\LifetimeIntraserviceTaskId.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\LifetimeAttrs\LifetimeStartOfApproval.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\LifetimeAttrs\LifetimeVersion.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\UserAttrs\UserActiveInCrm.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\UserAttrs\UserLogin.cs" />
+    <Compile Include="CrmAPI\Converters\EntityAttributes\UserAttrs\UserName.cs" />
+    <Compile Include="CrmAPI\Repositories\CRUD_Contracts\ConditionForGettingAllContracts.cs" />
+    <Compile Include="CrmAPI\InnParser.cs" />
+    <Compile Include="CrmAPI\Repositories\CRUD_Lifetimes\OldVersionsCleaner.cs" />
+    <Compile Include="CrossCuttingConcern\SystemInterfaces\CrmLifetimesCleaner.cs" />
+    <Compile Include="Entities\CrmConvertable.cs" />
+    <Compile Include="Entities\Enums\BusinessUnit.cs" />
+    <Compile Include="Entities\Enums\MustCheckReason.cs" />
+    <Compile Include="BL\ContractSync\SyncCommands\CommandCreateAndCheck.cs" />
+    <Compile Include="BL\ContractSync\SyncCommands\CommandMarkAsMustBeChecked.cs" />
+    <Compile Include="BL\ContractSync\SyncCommands\CommandCreateContract.cs" />
+    <Compile Include="BL\ContractSync\CrmContractSearchImpl.cs" />
+    <Compile Include="BL\LifetimeSync\DeadlineAssigner.cs" />
+    <Compile Include="BL\OverdueNotif\Entities\Email.cs" />
+    <Compile Include="BL\OverdueNotif\EmailGenerator.cs" />
+    <Compile Include="BL\OverdueNotif\WorkingTimeCalculation\RestTimeCalc.cs" />
+    <Compile Include="BL\OverdueNotif\WorkingTimeCalculation\WorkHoursCalc.cs" />
+    <Compile Include="CrmAPI\Constants\ContragentAttributes.cs" />
+    <Compile Include="CrmAPI\Constants\CurrencyAttributes.cs" />
+    <Compile Include="CrmAPI\Converters\EntityConverters\ContragentConverter.cs" />
+    <Compile Include="CrmAPI\CrmMail\CrmMailSender.cs" />
+    <Compile Include="CrmAPI\Repositories\CRUD_Lifetimes\OwnerAssigner.cs" />
+    <Compile Include="CrmAPI\Repositories\CrmContragentRepositoryImpl.cs" />
+    <Compile Include="CrmAPI\Repositories\CrmCurrencyRepositoryImpl.cs" />
+    <Compile Include="CrmAPI\Repositories\CrmSystemRepository.cs" />
+    <Compile Include="CrossCuttingConcern\SystemInterfaces\CrmContragentRepository.cs" />
+    <Compile Include="CrossCuttingConcern\SystemInterfaces\CrmSystem.cs" />
+    <Compile Include="CrossCuttingConcern\SystemInterfaces\CrmCurrencyRepository.cs" />
+    <Compile Include="CrossCuttingConcern\SystemInterfaces\EmailSender.cs" />
+    <Compile Include="BL\OverdueNotif\Entities\NotificationsForUser.cs" />
+    <Compile Include="BL\OverdueNotif\Entities\TaskNotification.cs" />
+    <Compile Include="BL\OverdueNotif\NotificationGeneration\NotificationGenerator.cs" />
+    <Compile Include="BL\OverdueNotifier.cs" />
+    <Compile Include="BL\LifetimeSync\RestTimeChecker.cs" />
+    <Compile Include="BL\LifetimeSync\WorkingHoursIncrementor.cs" />
+    <Compile Include="CrmAPI\Constants\CalendarAttributes.cs" />
+    <Compile Include="CrmAPI\Converters\EntityConverters\UserConverter.cs" />
+    <Compile Include="CrmAPI\Repositories\CrmProductionCalendarImpl.cs" />
+    <Compile Include="CrossCuttingConcern\SystemInterfaces\CrmContractsRepository.cs" />
+    <Compile Include="BL\ContractSync\SyncCommands\SyncCommand.cs" />
+    <Compile Include="BL\ContractSync\SyncCommandDiscoverer.cs" />
+    <Compile Include="BL\ContractSync\SyncCommands\CommandUpdateContract.cs" />
+    <Compile Include="BL\ContractSync\CrmContractSearch.cs" />
+    <Compile Include="BL\ContractSync\SyncCommandDiscovererImpl.cs" />
+    <Compile Include="CrossCuttingConcern\SystemInterfaces\ProductionCalendar.cs" />
+    <Compile Include="CrossCuttingConcern\SystemInterfaces\ContractRetriever.cs" />
+    <Compile Include="CrossCuttingConcern\ExternalSystem.cs" />
+    <Compile Include="CrossCuttingConcern\ExternalSystems.cs" />
+    <Compile Include="CrossCuttingConcern\SystemInterfaces\CrmLifetimeRepository.cs" />
+    <Compile Include="BL\LifeTimesSynchronizator.cs" />
+    <Compile Include="CrmAPI\Constants\ContractAttributes.cs" />
+    <Compile Include="CrmAPI\Constants\LifetimesAttributes.cs" />
+    <Compile Include="CrmAPI\Constants\UserAttributes.cs" />
+    <Compile Include="CrmAPI\Converters\CrmHelperAttrConverters\AttributeConverter.cs" />
+    <Compile Include="CrmAPI\Converters\CrmHelperAttrConverters\BooleanConverter.cs" />
+    <Compile Include="CrmAPI\Converters\CrmHelperAttrConverters\DateConverter.cs" />
+    <Compile Include="CrmAPI\Converters\CrmHelperAttrConverters\EntityReferenceConverter.cs" />
+    <Compile Include="CrmAPI\Converters\CrmHelperAttrConverters\IntConverter.cs" />
+    <Compile Include="CrmAPI\Converters\CrmHelperAttrConverters\MoneyConverter.cs" />
+    <Compile Include="CrmAPI\Converters\CrmHelperAttrConverters\PicklistConverter.cs" />
+    <Compile Include="CrmAPI\Converters\EntityConverters\ContractConverter.cs" />
+    <Compile Include="CrmAPI\Converters\CrmHelperAttrConverters\StringConverter.cs" />
+    <Compile Include="CrmAPI\Converters\EntityConverters\EntityConverter.cs" />
+    <Compile Include="CrmAPI\Converters\EntityConverters\LifetimeConverter.cs" />
+    <Compile Include="CrmAPI\Repositories\CrmLifetimesRepositoryImpl.cs" />
+    <Compile Include="CrossCuttingConcern\SystemInterfaces\CrmUserRepository.cs" />
+    <Compile Include="CrmAPI\Repositories\CrmUserRepositoryImpl.cs" />
+    <Compile Include="CrmAPI\Repositories\CRUD_Contracts\ContractsCreator.cs" />
+    <Compile Include="CrmAPI\Repositories\CRUD_Contracts\ContractsGetter.cs" />
+    <Compile Include="CrmAPI\Repositories\CRUD_Contracts\ContractsUpdater.cs" />
+    <Compile Include="CrmAPI\Repositories\CrmContractsRepositoryImpl.cs" />
+    <Compile Include="CrmAPI\CrmService.cs" />
+    <Compile Include="CrossCuttingConcern\SystemInterfaces\TaskLifeTimesRetriever.cs" />
+    <Compile Include="CrmAPI\Repositories\CRUD_Lifetimes\LifeTimeCreator.cs" />
+    <Compile Include="CrmAPI\Repositories\CRUD_Lifetimes\LifetimesGetter.cs" />
+    <Compile Include="CrmAPI\Repositories\CRUD_Lifetimes\LifeTimeUpdater.cs" />
+    <Compile Include="Entities\Contragent.cs" />
+    <Compile Include="Entities\Enums\ApprovalStatus.cs" />
+    <Compile Include="Entities\Enums\ContractType.cs" />
+    <Compile Include="Entities\Enums\Currency.cs" />
+    <Compile Include="Entities\Enums\TaskPriority.cs" />
+    <Compile Include="Entities\Enums\TaskStatus.cs" />
+    <Compile Include="Entities\Contract.cs" />
+    <Compile Include="Entities\Opportunity.cs" />
+    <Compile Include="Entities\Person.cs" />
+    <Compile Include="Entities\TaskLifeTime.cs" />
+    <Compile Include="Configuration\CrmEnvironmentType.cs" />
+    <Compile Include="IS_API\Contracts\ContractsPullerFromSqlResultRows.cs" />
+    <Compile Include="IS_API\SqlCommandSelectLifeTimes.cs" />
+    <Compile Include="IS_API\SqlCommandSelectTasks.cs" />
+    <Compile Include="IS_API\Contracts\AllContractsRetriever.cs" />
+    <Compile Include="IS_API\Constants.cs" />
+    <Compile Include="IS_API\Contracts\ContractAttributeAppender.cs" />
+    <Compile Include="IS_API\IntraServiceSqlDatabase.cs" />
+    <Compile Include="IS_API\Contracts\ISContractRetriever.cs" />
+    <Compile Include="IS_API\Lifetimes\ISTaskLifetimeRetriever.cs" />
+    <Compile Include="IS_API\Contracts\SingleContractRetriever.cs" />
+    <Compile Include="IS_API\StringToEnumParser.cs" />
+    <Compile Include="Configuration\IS_GetTasks_Type.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Res\Constants.cs" />
+    <Compile Include="Res\ConstantsOverdueNotifier.cs" />
+    <Compile Include="Res\Exceptions.cs" />
+    <Compile Include="Res\LogMessages.cs" />
+    <Compile Include="UnitTests\Cheats\UnitTestReal_CreateContragent.cs" />
+    <Compile Include="UnitTests\Cheats\UnitTestReal_RemoveAllContracts.cs" />
+    <Compile Include="UnitTests\Mock\MockConstants.cs" />
+    <Compile Include="UnitTests\Mock\MockCrmContractsRepository.cs" />
+    <Compile Include="UnitTests\Mock\MockCrmContragents.cs" />
+    <Compile Include="UnitTests\Mock\MockISContractRetriever.cs" />
+    <Compile Include="UnitTests\Mock\MockProductionCalendar.cs" />
+    <Compile Include="UnitTests\Mock\MockTaskLifeTimesDestination.cs" />
+    <Compile Include="UnitTests\Mock\MockTaskLifeTimesRetriever.cs" />
+    <Compile Include="UnitTests\Mock\MockUserRepository.cs" />
+    <Compile Include="UnitTests\UnitTestMock_InnParser.cs" />
+    <Compile Include="UnitTests\UT_SyncContracts\UnitTestReal_GetContragent.cs" />
+    <Compile Include="UnitTests\UT_SyncLifeTimes\UnitTestReal_CleanOldLifetimes.cs" />
+    <Compile Include="UnitTests\UT_SyncLifeTimes\UnitTestReal_CrmProductionCalendar.cs" />
+    <Compile Include="UnitTests\UT_SyncLifeTimes\UnitTestMock_RestTimeChecker.cs" />
+    <Compile Include="UnitTests\UT_SyncContracts\UnitTestReal_CrmCurrecyGetter.cs" />
+    <Compile Include="UnitTests\UT_SendLifeTimesNotifs\UnitTestSendMockNotifsFromRealCrm.cs" />
+    <Compile Include="UnitTests\UT_SendLifeTimesNotifs\UnitTestReal_SendAllNotifs.cs" />
+    <Compile Include="UnitTests\UT_SyncLifeTimes\UnitTestMock_WorkingHoursIncrementor.cs" />
+    <Compile Include="UnitTests\UT_SendLifeTimesNotifs\UnitTestMock_WorkingTimeCalculation.cs" />
+    <Compile Include="UnitTests\UT_SyncContracts\UnitTestMock_CrmContractsSearcher.cs" />
+    <Compile Include="UnitTests\UT_SyncContracts\UnitTestReal_GetISContracts.cs" />
+    <Compile Include="UnitTests\UT_SyncContracts\UnitTestMock_SyncCommandDiscoverer.cs" />
+    <Compile Include="UnitTests\UT_SyncContracts\UnitTestMock_SyncModel.cs" />
+    <Compile Include="UnitTests\UT_SyncContracts\UnitTestMock_SyncSingleContract.cs" />
+    <Compile Include="UnitTests\UT_SyncLifeTimes\UnitTestMock_ApprovalDeadlineSetter.cs" />
+    <Compile Include="UnitTests\UT_SyncLifeTimes\UnitTestMock_SyncLifeTimes.cs" />
+    <Compile Include="UnitTests\UT_SyncLifeTimes\UnitTestMock_SyncLifeTimesWithDeadlines.cs" />
+    <Compile Include="UnitTests\UT_SyncLifeTimes\obsolete_UnitTestRealSyncLifetimes.cs" />
+    <Compile Include="UnitTests\UT_Trash.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="notes.txt" />
+    <Content Include="questions.txt" />
+    <Content Include="todo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
