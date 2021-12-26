@@ -36,15 +36,15 @@ namespace IntraserviceTasks.BL
             {
                 SyncSingleContract(contract);
             }
-            catch (Exception exc)
+            catch (Exception ex)
             {
-                _logger.Error(Exceptions.ERROR_WHILE_SYNCING_CONTRACT, contract.Id.ToString(), exc.Message);
+                _logger.Error(Exceptions.ERROR_WHILE_SYNCING_CONTRACT, contract.Id.ToString(), ex.Message);
             }
         }
 
         private void SyncSingleContract(Contract contract)
         {
-
+			string newVar = "this is new var";
             SyncCommandDiscoverer discoverer = new SyncCommandDiscovererImpl(contract);
             List<SyncCommand> commands = discoverer.Discover();
             foreach (var command in commands)
